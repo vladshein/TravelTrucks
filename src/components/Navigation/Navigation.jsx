@@ -7,10 +7,10 @@ const navClasses = ({ isActive }) => (isActive ? style.active : "");
 const Navigation = () => {
   return (
     <header className={style.headerdiv}>
-      <Link href="/">
+      <Link className={style.headerlogo} to="/">
         <img src={logo} alt="Home" />
       </Link>
-      <div className={style.headerdiv}>
+      <div className={style.headernav}>
         <NavLink to="/" className={navClasses}>
           Home
         </NavLink>

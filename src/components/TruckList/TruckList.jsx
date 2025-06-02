@@ -1,19 +1,19 @@
 import { selectFilteredContacts } from "../../redux/contactsSlice";
-import Contact from "../Contact/Contact";
+import TruckCard from "../TruckCard/TruckCard";
 import css from "./ContactList.module.css";
 import { useSelector } from "react-redux";
 
 function ContactList() {
   const visibleContacts = useSelector(selectFilteredContacts);
 
-  if (visibleContacts.length === 0) return <p>No contacts available.</p>;
+  if (visibleContacts.length === 0) return <p>No trucks available.</p>;
 
   return (
     <ul className={css.list}>
-      {visibleContacts.map(contact => (
-        <li className={css.item} key={contact.id}>
-          <Contact data={contact} />
-          {console.log(`Item ${contact.id}`)}
+      {visibleContacts.map(truck => (
+        <li className={css.item} key={truck.id}>
+          <TruckCard data={truck} />
+          {console.log(`Item ${truck.id}`)}
         </li>
       ))}
     </ul>

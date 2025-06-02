@@ -15,13 +15,14 @@ const SearchBar = () => {
 
   return (
     <div>
-      <label htmlFor={searchId}> Find contacts by name</label>
+      <label htmlFor={searchId}> Location</label>
       <input
         className={css.searchbar}
         type="text"
         value={value}
         onChange={handleChange}
         id={searchId}
+        placeholder="Kyiv,Ukraine"
       />
     </div>
   );

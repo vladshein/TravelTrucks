@@ -1,0 +1,49 @@
+.filterEquipmentContainer {
+  width: 360px;
+  height: 272px;
+}
+
+.filterList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  align-items: flex-end;
+  /* justify-content: center; */
+  gap: 11px;
+}
+.filterItem {
+  width: 112px;
+  height: 96px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 112px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--Gray-light, #dadde1);
+  mix-blend-mode: multiply;
+}
+
+.iconStroke {
+  stroke: #101828;
+  fill: #101828;
+  color: #101828;
+}
+
+.filterCardText {
+  color: var(--Main, #101828);
+  text-align: center;
+  /* Button */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.08px;
+}
+
+.filterCard.active {
+  border-color: red;
+}
