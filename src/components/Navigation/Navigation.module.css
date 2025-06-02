@@ -1,0 +1,16 @@
+.headerdiv {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-items: baseline;
+  align-items: center;
+}
+
+.active {
+  color: red;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}

@@ -1,39 +1,33 @@
-import SearchBar from "./SearchBar/SearchBar";
-import FormikForm from "./FormikForm/FormikForm";
-import ContactList from "./ContactList/ContactList";
-import css from "./App.module.css";
-// import { addContact, deleteContact, fetchContacts } from "../api/api";
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./Navigation/Navigation";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContactsOp } from "../redux/contactsOps";
-import { selectError, selectLoading } from "../redux/contactsSlice";
+const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
+const DetailsPage = lazy(() => import("../pages/DetailsPage/DetailsPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+
+const Features = lazy(() => import("./Features/Features"));
+const Reviews = lazy(() => import("./Reviews/Reviews"));
+
+import style from "./App.module.css";
 
 const App = () => {
-  const dispatch = useDispatch();
-  // const isLoading = useSelector(state => state.contacts.loading);
-  // const error = useSelector(state => state.contacts.error);
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    dispatch(fetchContactsOp());
-  }, [dispatch]);
-
   return (
-    <div className={css.app}>
-      <h1>Phonebook</h1>
-      <FormikForm />
-      <SearchBar />
-      {/* {isLoading ? <h2>Loading...</h2> : <ContactList />} */}
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : (
-        <ContactList />
-      )}
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className={style.container}>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/catalog" element={<CatalogPage />}></Route>
+          <Route path="/catalog/:catalogId" element={<DetailsPage />}>
+            <Route path="features" element={<Features />}></Route>
+            <Route path="reviews" element={<Reviews />}></Route>
+          </Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
+        </Routes>
+      </div>
+    </Suspense>
   );
 };
 
