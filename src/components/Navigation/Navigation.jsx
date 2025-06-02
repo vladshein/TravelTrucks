@@ -1,5 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import style from "./Navigation.module.css";
+import logo from "../../images/Logo.svg";
 
 const navClasses = ({ isActive }) => (isActive ? style.active : "");
 
@@ -7,7 +8,7 @@ const Navigation = () => {
   return (
     <header className={style.headerdiv}>
       <Link href="/">
-        <img src="../../images/Logo.svg" alt="Home" />
+        <img src={logo} alt="Home" />
       </Link>
       <div className={style.headerdiv}>
         <NavLink to="/" className={navClasses}>
