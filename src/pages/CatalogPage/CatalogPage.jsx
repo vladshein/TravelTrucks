@@ -2,12 +2,38 @@ import { Outlet } from "react-router-dom";
 import styles from "./CatalogPage.module.css";
 import Location from "../../components/Location/Location";
 import Filters from "../../components/Filters/Filters";
+import TruckList from "../../components/TruckList/TruckList";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContactsOp } from "../../redux/contactsOps";
+import { selectError, selectLoading } from "../../redux/contactsSlice";
 
 const CatalogPage = () => {
+  const dispatch = useDispatch();
+  // const isLoading = useSelector(state => state.contacts.loading);
+  // const error = useSelector(state => state.contacts.error);
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContactsOp());
+  }, [dispatch]);
   return (
     <div className={styles.catalogContainer}>
-      <Location />
-      <Filters />
+      <div>
+        <Location />
+        <Filters />
+      </div>
+      <div>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : (
+          <TruckList />
+        )}
+      </div>
     </div>
   );
 };

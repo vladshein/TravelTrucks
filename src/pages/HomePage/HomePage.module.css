@@ -49,3 +49,7 @@
 .heroButton:hover {
   background: #d84343;
 }
+
+.heroButton:active {
+  background: #d84343;
+}
