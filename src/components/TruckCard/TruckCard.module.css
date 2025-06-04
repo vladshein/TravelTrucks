@@ -29,6 +29,17 @@
   object-position: center;
 }
 
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cardHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .cardDescription {
   display: flex;
   width: 524px;
@@ -39,13 +50,13 @@
 }
 
 .firstLine {
-  display: flex;
   width: 524px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.css.firstLineText {
+.firstLineText {
   color: var(--Main, #101828);
 
   /* H2 */
@@ -58,5 +69,125 @@
 
 .firstLineEnd {
   display: flex;
-  gap: 13px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.secondLine {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.ratingReview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.reviewText {
+  color: var(--Main, #101828);
+
+  /* Body underline */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: var(--Main, #101828);
+
+  /* Body underline */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.descriptionText {
+  overflow: hidden;
+  color: var(--Text, #475467);
+  text-overflow: ellipsis;
+
+  /* Body */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.categories {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 8px;
+  width: 524px;
+  justify-content: left;
+  align-items: center;
+}
+
+.iconBox {
+  display: flex;
+  padding: 12px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 100px;
+  background: var(--Badges, #f2f4f7);
+  mix-blend-mode: multiply;
+}
+
+.iconBoxText {
+  color: var(--Main, #101828);
+  text-align: center;
+  /* Body 2 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.cardButton {
+  display: flex;
+  width: 166px;
+  height: 56px;
+  padding: 16px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 200px;
+  background: var(--Button, #e44848);
+
+  color: var(--White, #fff);
+  /* Button */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.08px;
+  border-color: #e44848;
+}
+
+.cardButton:hover,
+.cardButton:focus {
+  background: #d84343;
 }

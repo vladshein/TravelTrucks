@@ -21,31 +21,31 @@ const Filters = () => {
         <ul className={style.filterList}>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#wind"}></use>
+              <use href={"/icons.svg#wind"}></use>
             </svg>
             <p className={style.filterCardText}>AC</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#diagram"}></use>
+              <use href={"/icons.svg#diagram"}></use>
             </svg>
             <p className={style.filterCardText}>Automatic</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#cup-hot"}></use>
+              <use href={"/icons.svg#cup-hot"}></use>
             </svg>
             <p className={style.filterCardText}>Kitchen</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#tv"}></use>
+              <use href={"/icons.svg#tv"}></use>
             </svg>
             <p className={style.filterCardText}>TV</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#ph_shower"}></use>
+              <use href={"/icons.svg#shower"}></use>
             </svg>
             <p className={style.filterCardText}>Bathroom</p>
           </li>
@@ -65,19 +65,19 @@ const Filters = () => {
         <ul className={style.filterList}>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#bi_grid-1x2"}></use>
+              <use href={"/icons.svg#bi_grid-1x2"}></use>
             </svg>
             <p className={style.filterCardText}>Van</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#bi_grid"}></use>
+              <use href={"/icons.svg#bi_grid"}></use>
             </svg>
             <p className={style.filterCardText}>Fully Integrated</p>
           </li>
           <li className={style.filterItem} onClick={handleClick}>
             <svg width="32" height="32">
-              <use href={"/camper_trucks.svg#bi_grid-3x3-gap"}></use>
+              <use href={"/icons.svg#bi_grid-3x3-gap"}></use>
             </svg>
             <p className={style.filterCardText}>Alcove</p>
           </li>

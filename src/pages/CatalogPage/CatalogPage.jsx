@@ -11,8 +11,6 @@ import { selectError, selectLoading } from "../../redux/contactsSlice";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(state => state.contacts.loading);
-  // const error = useSelector(state => state.contacts.error);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
 

@@ -1,33 +1,142 @@
 import css from "./TruckCard.module.css";
-import { FaUser, FaPhoneAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { deleteContactOp } from "../../redux/contactsOps";
+import { useNavigate } from "react-router-dom";
 
 const TruckCard = ({
-  data: { id, name, number, gallery, price, description },
+  data: {
+    id,
+    name,
+    gallery,
+    price,
+    description,
+    reviews,
+    rating,
+    location,
+    TV,
+    AC,
+    gas,
+    kitchen,
+    microwave,
+    transmission,
+    radio,
+    water,
+    engine,
+  },
 }) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleDelete = () => {
-    dispatch(deleteContactOp(id));
+  let descriptionCut = "";
+  if (description) {
+    descriptionCut = description.slice(0, 61);
+  }
+
+  const handleClick = () => {
+    navigate(`${id}`);
   };
 
   return (
     <div className={css.container}>
-      <div>
-        <img className={css.imageItem} src={gallery[0].original} alt="" />
-      </div>
+      <img className={css.imageItem} src={gallery[0].original} alt="" />
 
       <div className={css.cardDescription}>
-        <div className={css.firstLine}>
-          <h2>{name}</h2>
-          <div className={css.firstLineEnd}>
-            <h2 className={css.firstLineText}>€{price}</h2>
-            <svg width="24" height="24">
-              <use href={"/camper_trucks.svg#Property-1Default"}></use>
-            </svg>
+        <div className={css.cardHead}>
+          <div className={css.firstLine}>
+            <h2>{name}</h2>
+            <div className={css.firstLineEnd}>
+              <h2 className={css.firstLineText}>€{price}</h2>
+              <svg width="25" height="24">
+                <use href={"/icons.svg#heart"}></use>
+              </svg>
+            </div>
+          </div>
+          <div className={css.secondLine}>
+            <div className={css.ratingReview}>
+              <svg width="16" height="16">
+                <use href={"/icons.svg#star"}></use>
+              </svg>
+              <p className={css.reviewText}>
+                {rating}({reviews.length} reviews)
+              </p>
+            </div>
+
+            <div className={css.location}>
+              <svg width="16" height="16">
+                <use href={"/icons.svg#map"}></use>
+              </svg>
+              <p>{location}</p>
+            </div>
           </div>
         </div>
+        <p className={css.descriptionText}>{descriptionCut}...</p>
+        <div className={css.categories}>
+          {transmission && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#diagram"} />
+              </svg>
+              <p className={css.iconBoxText}>Automatic</p>
+            </div>
+          )}
+          {engine && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#fuel"} />
+              </svg>
+              <p className={css.iconBoxText}>{engine}</p>
+            </div>
+          )}
+          {TV && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#tv"} width={20} height={20} />
+              </svg>
+              <p className={css.iconBoxText}>TV</p>
+            </div>
+          )}
+          {AC && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#wind"} />
+              </svg>
+              <p className={css.iconBoxText}>AC</p>
+            </div>
+          )}
+          {kitchen && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#cup-hot"} />
+              </svg>
+              <p className={css.iconBoxText}>Kitchen</p>
+            </div>
+          )}
+          {microwave && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#microwave"} />
+              </svg>
+              <p className={css.iconBoxText}>Microwave</p>
+            </div>
+          )}
+
+          {radio && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#radios"} />
+              </svg>
+              <p className={css.iconBoxText}>Radio</p>
+            </div>
+          )}
+          {water && (
+            <div className={css.iconBox}>
+              <svg width={20} height={20}>
+                <use href={"/icons.svg#water"} />
+              </svg>
+              <p className={css.iconBoxText}>Water</p>
+            </div>
+          )}
+        </div>
+        <button className={css.cardButton} onClick={handleClick}>
+          Show more
+        </button>
       </div>
     </div>
   );
