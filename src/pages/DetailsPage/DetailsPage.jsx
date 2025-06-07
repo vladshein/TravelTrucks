@@ -1,31 +1,91 @@
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import { selectFilteredContacts } from "../../redux/contactsSlice";
-import { useSelector } from "react-redux";
+import { selectOne } from "../../redux/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import style from "./DetailsPage.module.css";
+import { fetchOneOp } from "../../redux/contactsOps";
+import { useEffect } from "react";
+import BookForm from "../../components/BookForm/BookForm";
 
 const Details = () => {
   const { catalogId } = useParams();
   console.log("TruckId", catalogId);
-  const visibleTrucks = useSelector(selectFilteredContacts);
-  let truck = {};
-  if (visibleTrucks) {
-    console.log(visibleTrucks);
-    truck = visibleTrucks[catalogId - 1];
-     console.log("Truck", truck);
-  }
+  const dispatch = useDispatch();
 
-  console.log("Truck", truck);
+  useEffect(() => {
+    dispatch(fetchOneOp(catalogId));
+  }, [dispatch, catalogId]);
+
+  const truck = useSelector(selectOne);
+  const navClasses = ({ isActive }) => (isActive ? style.activeText : "");
+
   return (
-    <div>
-      <p>Details</p>
-      <ul>
-        <li>
-          <NavLink to="features">cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">review</NavLink>
-        </li>
-      </ul>
-      <Outlet />
+    <div className={style.detailsContainer}>
+      <div className={style.descriptionAndGallery}>
+        <div className={style.truckDescription}>
+          <h2>{truck.name}</h2>
+          <div className={style.secondLine}>
+            <div className={style.ratingReview}>
+              <svg width="16" height="16">
+                <use href={"/icons.svg#yellow-star"}></use>
+              </svg>
+
+              {console.log("truck reviews:", truck.gallery)}
+              <p className={style.reviewText}>
+                {truck.rating}({truck.reviews.length} reviews)
+              </p>
+            </div>
+
+            <div className={style.location}>
+              <svg width="16" height="16">
+                <use href={"/icons.svg#map"}></use>
+              </svg>
+              <p>{truck.location}</p>
+            </div>
+          </div>
+        </div>
+        {console.log("truck gallery:", truck.gallery)}
+
+        <ul className={style.imageList}>
+          {truck.gallery.map((image, index) => (
+            <li className={style.item}>
+              <img
+                className={style.truckImage}
+                src={image.original}
+                alt={`Image ${index}`}
+              />
+            </li>
+          ))}
+        </ul>
+        <p className={style.truckDescriptionText}>{truck.description}</p>
+      </div>
+
+      <div>
+        <ul className={style.featuresAndReviews}>
+          <li>
+            <NavLink to="features" className={navClasses}>
+              Features
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="reviews" className={navClasses}>
+              Reviews
+            </NavLink>
+          </li>
+        </ul>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1312"
+          height="2"
+          viewBox="0 0 1312 2"
+          fill="none"
+        >
+          <path d="M0 1H1312" stroke="#DADDE1" />
+        </svg>
+      </div>
+      <div className={style.reviewBook}>
+        <Outlet />
+        <BookForm />
+      </div>
     </div>
   );
 };

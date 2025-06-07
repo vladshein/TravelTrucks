@@ -10,14 +10,14 @@ const Navigation = () => {
       <Link className={style.headerlogo} to="/">
         <img src={logo} alt="Home" />
       </Link>
-      <div className={style.headernav}>
+      <nav className={style.headernav}>
         <NavLink to="/" className={navClasses}>
           Home
         </NavLink>
         <NavLink to="/catalog" className={navClasses}>
           Catalog
         </NavLink>
-      </div>
+      </nav>
     </header>
   );
 };

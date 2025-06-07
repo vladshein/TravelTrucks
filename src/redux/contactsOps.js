@@ -49,4 +49,18 @@ const deleteContactOp = createAsyncThunk(
   }
 );
 
-export { fetchContactsOp, addContactOp, deleteContactOp };
+const fetchOneOp = createAsyncThunk(
+  "contacts/fetchOne",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/${id}/`);
+      console.log("response.data.results", data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export { fetchContactsOp, addContactOp, deleteContactOp, fetchOneOp };

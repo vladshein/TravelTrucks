@@ -1,6 +1,5 @@
 .container {
   border-radius: 6px;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +23,6 @@
   height: 320px;
   flex-shrink: 0;
   border-radius: 10px;
-  /* background: url(<path-to-image>) lightgray 50% / cover no-repeat; */
   object-fit: cover; /* Ensures the image fills the space */
   object-position: center;
 }
@@ -184,7 +182,7 @@
   font-weight: 500;
   line-height: 24px; /* 150% */
   letter-spacing: -0.08px;
-  border-color: #e44848;
+  border: none;
 }
 
 .cardButton:hover,

@@ -1,11 +1,17 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContactsOp, addContactOp, deleteContactOp } from "./contactsOps";
+import {
+  fetchContactsOp,
+  addContactOp,
+  deleteContactOp,
+  fetchOneOp,
+} from "./contactsOps";
 import { selectNameFilter } from "./filtersSlice";
 
 const initialState = {
   items: [],
   loading: false,
   error: null,
+  item: { reviews: [], gallery: [] },
 };
 
 const contactsSlice = createSlice({
@@ -60,6 +66,23 @@ const contactsSlice = createSlice({
         state.loading = false;
         state.error = payload;
         console.log("error", payload);
+      })
+      .addCase(fetchOneOp.pending, state => {
+        state.loading = true;
+        state.error = null;
+        console.log("state", state);
+      })
+      .addCase(fetchOneOp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        console.log("payload", payload);
+        state.item = JSON.parse(JSON.stringify(payload));
+        console.log("state.item", state.item);
+      })
+      .addCase(fetchOneOp.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        console.log("error", payload);
       });
   },
 });
@@ -67,6 +90,7 @@ const contactsSlice = createSlice({
 const selectLoading = state => state.contacts.loading;
 const selectError = state => state.contacts.error;
 const selectContacts = state => state.contacts.items;
+const selectOne = state => state.contacts.item;
 // Memoized selector
 const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
@@ -79,4 +103,10 @@ const selectFilteredContacts = createSelector(
 
 export const contactsReducer = contactsSlice.reducer;
 
-export { selectLoading, selectError, selectContacts, selectFilteredContacts };
+export {
+  selectLoading,
+  selectError,
+  selectContacts,
+  selectFilteredContacts,
+  selectOne,
+};

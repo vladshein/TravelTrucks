@@ -60,10 +60,6 @@
   letter-spacing: -0.08px;
 }
 
-.filterCard.active {
-  border-color: red;
-}
-
 .filtersButton {
   display: flex;
   width: 166px;
@@ -74,7 +70,7 @@
   border-radius: 200px;
   background: var(--Button, #e44848);
   color: white;
-  border-color: #e44848;
+  border: none;
 }
 
 .filtersButton:hover,

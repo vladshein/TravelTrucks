@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import css from "./TruckCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { fetchOneOp } from "../../redux/contactsOps";
 
 const TruckCard = ({
   data: {
@@ -23,6 +25,7 @@ const TruckCard = ({
   },
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let descriptionCut = "";
   if (description) {
@@ -30,6 +33,7 @@ const TruckCard = ({
   }
 
   const handleClick = () => {
+    dispatch(fetchOneOp(id));
     navigate(`${id}`);
   };
 
@@ -51,7 +55,7 @@ const TruckCard = ({
           <div className={css.secondLine}>
             <div className={css.ratingReview}>
               <svg width="16" height="16">
-                <use href={"/icons.svg#star"}></use>
+                <use href={"/icons.svg#yellow-star"}></use>
               </svg>
               <p className={css.reviewText}>
                 {rating}({reviews.length} reviews)
@@ -111,7 +115,7 @@ const TruckCard = ({
           {microwave && (
             <div className={css.iconBox}>
               <svg width={20} height={20}>
-                <use href={"/icons.svg#microwave"} />
+                <use href={"/icons.svg#microwave1"} />
               </svg>
               <p className={css.iconBoxText}>Microwave</p>
             </div>
