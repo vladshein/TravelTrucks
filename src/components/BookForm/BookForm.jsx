@@ -23,7 +23,7 @@ const BookForm = () => {
       <div className={style.formHead}>
         <h3>Book your campervan now</h3>
         <p className={style.formHeadText}>
-          Stay connected! We are always ready ti help you.
+          Stay connected! We are always ready to help you.
         </p>
       </div>
       <Formik

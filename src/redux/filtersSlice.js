@@ -1,7 +1,14 @@
-import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
+  filters: {
+    name: "",
+    ac: false,
+    tv: false,
+    automatic: false,
+    kitchen: false,
+    bath: false,
+  },
 };
 
 const filtersSlice = createSlice({
@@ -9,14 +16,13 @@ const filtersSlice = createSlice({
   initialState,
   reducers: {
     addFilter: (state, { payload }) => {
-      return {
-        ...state,
-        name: payload,
-      };
+      state.filters = { ...state.filters, ...payload };
+      console.log("Updated filters:", state.filters);
     },
   },
 });
 
-export const selectNameFilter = state => state.filters.name;
+export const selectNameFilter = state => state.filters.filters.name;
+export const selectFilter = state => state.filters.filters;
 export const filtersReducer = filtersSlice.reducer;
 export const { addFilter } = filtersSlice.actions;

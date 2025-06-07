@@ -1,9 +1,26 @@
+import { useDispatch, useSelector } from "react-redux";
+import clsx from "clsx";
+
 import style from "./Filters.module.css";
+import { addFilter, selectFilter } from "../../redux/filtersSlice";
 
 const Filters = () => {
-  const handleClick = () => {
-    console.log("Button pressed");
+  const dispatch = useDispatch();
+
+  const handleFilterChange = filter => {
+    dispatch(addFilter(filter));
   };
+
+  const filters = useSelector(selectFilter);
+
+  const handleClick = () => {};
+
+  // const handleFilterChange = element => {
+  //   console.log("Button pressed", element);
+  //   // element.classList.toggle("active");
+  //   const dispatch = useDispatch();
+  // };
+
   return (
     <div className={style.filtersContainer}>
       <p className={style.filtersText}>Filters</p>
@@ -19,31 +36,50 @@ const Filters = () => {
           <path d="M0 1H360" stroke="#DADDE1" />
         </svg>
         <ul className={style.filterList}>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={clsx(style.filterItem, {
+              [style.active]: filters.ac,
+            })}
+            onClick={() => handleFilterChange({ ac: !filters.ac })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#wind"}></use>
             </svg>
             <p className={style.filterCardText}>AC</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={style.filterItem}
+            onClick={() =>
+              handleFilterChange({ automatic: !filters.automatic })
+            }
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#diagram"}></use>
             </svg>
             <p className={style.filterCardText}>Automatic</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={style.filterItem}
+            onClick={() => handleFilterChange({ kitchen: !filters.kitchen })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#cup-hot"}></use>
             </svg>
             <p className={style.filterCardText}>Kitchen</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={style.filterItem}
+            onClick={() => handleFilterChange({ tv: !filters.tv })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#tv"}></use>
             </svg>
             <p className={style.filterCardText}>TV</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={style.filterItem}
+            onClick={() => handleFilterChange({ bath: !filters.bath })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#shower"}></use>
             </svg>

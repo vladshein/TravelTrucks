@@ -9,7 +9,7 @@ const SearchBar = () => {
   const value = useSelector(selectNameFilter);
 
   const handleChange = e => {
-    dispatch(addFilter(e.target.value));
+    dispatch(addFilter({ name: e.target.value }));
     console.log(e.target.value);
   };
 
