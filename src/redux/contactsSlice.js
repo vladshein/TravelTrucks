@@ -5,13 +5,15 @@ import {
   deleteContactOp,
   fetchOneOp,
 } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
+import { selectFilter, selectLocationFilter } from "./filtersSlice";
 
 const initialState = {
   items: [],
   loading: false,
   error: null,
   item: { reviews: [], gallery: [] },
+  page: 1,
+  totalPages: 0,
 };
 
 const contactsSlice = createSlice({
@@ -91,13 +93,39 @@ const selectLoading = state => state.contacts.loading;
 const selectError = state => state.contacts.error;
 const selectContacts = state => state.contacts.items;
 const selectOne = state => state.contacts.item;
+
 // Memoized selector
 const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
+  [selectContacts, selectLocationFilter],
   (contacts, filter) => {
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.location.toLowerCase().includes(filter.toLowerCase())
     );
+  }
+);
+
+const applyFilters = createSelector(
+  [selectContacts, selectFilter, selectLocationFilter],
+  (contacts, filters, location) => {
+    const activeFilters = Object.keys(filters).filter(
+      key => filters[key] !== "" && filters[key] !== false
+    );
+
+    const filteredLocationItems = contacts.filter(contact =>
+      contact.location.toLowerCase().includes(location.toLowerCase())
+    );
+    console.log("Active filters:", activeFilters);
+    console.log("Contacts:", contacts);
+
+    const filteredItems =
+      activeFilters.length === 0
+        ? filteredLocationItems
+        : filteredLocationItems.filter(item =>
+            activeFilters.every(filter => item[filter] === filters[filter])
+          );
+
+    console.log("Filtered items:", filteredItems);
+    return filteredItems;
   }
 );
 
@@ -109,4 +137,5 @@ export {
   selectContacts,
   selectFilteredContacts,
   selectOne,
+  applyFilters,
 };

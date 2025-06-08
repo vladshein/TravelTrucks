@@ -6,10 +6,19 @@
       rgba(0, 0, 0, 0.2) 0%,
       rgba(0, 0, 0, 0.2) 100%
     ),
-    url(../../images/bg.jpg) lightgray 0px -192.086px / 100% 138.099% no-repeat;
+    url(../../images/bg@1x.webp) lightgray 0px -192.086px / 100% 138.099% no-repeat;
+  background-size: cover;
+  background-position: center;
   height: 696px;
   color: azure;
   max-width: 1440px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url("../../images/bg@1x.webp") lightgray 0px -192.086px / 100%
+      138.099% no-repeat;
+  }
 }
 
 .heroH1 {

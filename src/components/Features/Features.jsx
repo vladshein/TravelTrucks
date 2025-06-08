@@ -20,7 +20,9 @@ const Features = () => {
             <svg width={20} height={20}>
               <use href={"/icons.svg#fuel"} />
             </svg>
-            <p className={css.iconBoxText}>{truck.engine}</p>
+            <p className={css.iconBoxText}>
+              {truck.engine === "petrol" ? "Petrol" : "Diesel"}
+            </p>
           </div>
         )}
         {truck.TV && (

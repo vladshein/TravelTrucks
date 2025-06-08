@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import css from "./TruckCard.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { fetchOneOp } from "../../redux/contactsOps";
 
 const TruckCard = ({
@@ -47,7 +47,7 @@ const TruckCard = ({
             <h2>{name}</h2>
             <div className={css.firstLineEnd}>
               <h2 className={css.firstLineText}>€{price}</h2>
-              <svg width="25" height="24">
+              <svg className={css.heartStyle} width="25" height="24">
                 <use href={"/icons.svg#heart"}></use>
               </svg>
             </div>
@@ -58,7 +58,10 @@ const TruckCard = ({
                 <use href={"/icons.svg#yellow-star"}></use>
               </svg>
               <p className={css.reviewText}>
-                {rating}({reviews.length} reviews)
+                <Link className={css.reviewLink} to={`${id}/reviews`}>
+                  {rating}({reviews.length} reviews
+                </Link>
+                )
               </p>
             </div>
 
@@ -85,7 +88,9 @@ const TruckCard = ({
               <svg width={20} height={20}>
                 <use href={"/icons.svg#fuel"} />
               </svg>
-              <p className={css.iconBoxText}>{engine}</p>
+              <p className={css.iconBoxText}>
+                {engine === "petrol" ? "Petrol" : "Diesel"}
+              </p>
             </div>
           )}
           {TV && (
@@ -132,7 +137,7 @@ const TruckCard = ({
           {water && (
             <div className={css.iconBox}>
               <svg width={20} height={20}>
-                <use href={"/icons.svg#water"} />
+                <use href={"/icons.svg#water2"} />
               </svg>
               <p className={css.iconBoxText}>Water</p>
             </div>

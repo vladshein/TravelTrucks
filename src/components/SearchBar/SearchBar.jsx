@@ -1,15 +1,19 @@
 import { useId } from "react";
 import css from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addFilter, selectNameFilter } from "../../redux/filtersSlice";
+import {
+  addFilter,
+  addLocation,
+  selectLocationFilter,
+} from "../../redux/filtersSlice";
 
 const SearchBar = () => {
   const searchId = useId();
   const dispatch = useDispatch();
-  const value = useSelector(selectNameFilter);
+  const value = useSelector(selectLocationFilter);
 
   const handleChange = e => {
-    dispatch(addFilter({ name: e.target.value }));
+    dispatch(addLocation(e.target.value));
     console.log(e.target.value);
   };
 
@@ -18,14 +22,24 @@ const SearchBar = () => {
       <label className={css.searchLabel} htmlFor={searchId}>
         Location
       </label>
-      <input
-        className={css.searchbar}
-        type="text"
-        value={value}
-        onChange={handleChange}
-        id={searchId}
-        placeholder="City"
-      />
+      <div className={css.searchContainer}>
+        <input
+          className={css.searchbar}
+          type="text"
+          value={value}
+          onChange={handleChange}
+          id={searchId}
+          placeholder="City"
+        />
+        <svg
+          className={css.mapIcon}
+          width="20"
+          height="20"
+          // onClick={handleChange}
+        >
+          <use href={"/icons.svg#map"}></use>
+        </svg>
+      </div>
     </div>
   );
 };

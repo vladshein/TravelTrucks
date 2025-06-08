@@ -2,13 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   filters: {
-    name: "",
-    ac: false,
-    tv: false,
-    automatic: false,
+    AC: false,
+    TV: false,
+    transmission: "",
     kitchen: false,
-    bath: false,
+    bathroom: false,
+    form: "",
   },
+  location: "",
 };
 
 const filtersSlice = createSlice({
@@ -19,10 +20,14 @@ const filtersSlice = createSlice({
       state.filters = { ...state.filters, ...payload };
       console.log("Updated filters:", state.filters);
     },
+    addLocation: (state, { payload }) => {
+      state.location = payload;
+    },
   },
 });
 
-export const selectNameFilter = state => state.filters.filters.name;
+export const selectLocationFilter = state => state.filters.location;
 export const selectFilter = state => state.filters.filters;
 export const filtersReducer = filtersSlice.reducer;
 export const { addFilter } = filtersSlice.actions;
+export const { addLocation } = filtersSlice.actions;

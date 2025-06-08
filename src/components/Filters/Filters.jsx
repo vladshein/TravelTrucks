@@ -13,16 +13,14 @@ const Filters = () => {
 
   const filters = useSelector(selectFilter);
 
-  const handleClick = () => {};
-
-  // const handleFilterChange = element => {
-  //   console.log("Button pressed", element);
-  //   // element.classList.toggle("active");
-  //   const dispatch = useDispatch();
-  // };
+  const handleSearch = event => {
+    event.preventDefault();
+    console.log("Filters event form", event.target);
+    
+  };
 
   return (
-    <div className={style.filtersContainer}>
+    <form className={style.filtersContainer}>
       <p className={style.filtersText}>Filters</p>
       <div className={style.filterEquipmentContainer}>
         <h3>Vehicle equipment</h3>
@@ -37,10 +35,11 @@ const Filters = () => {
         </svg>
         <ul className={style.filterList}>
           <li
+            name="AC"
             className={clsx(style.filterItem, {
-              [style.active]: filters.ac,
+              [style.active]: filters.AC,
             })}
-            onClick={() => handleFilterChange({ ac: !filters.ac })}
+            onClick={() => handleFilterChange({ AC: !filters.AC })}
           >
             <svg width="32" height="32">
               <use href={"/icons.svg#wind"}></use>
@@ -48,9 +47,15 @@ const Filters = () => {
             <p className={style.filterCardText}>AC</p>
           </li>
           <li
-            className={style.filterItem}
+            className={clsx(style.filterItem, {
+              [style.active]: filters.transmission,
+            })}
             onClick={() =>
-              handleFilterChange({ automatic: !filters.automatic })
+              handleFilterChange(
+                filters.transmission
+                  ? { transmission: "" }
+                  : { transmission: "automatic" }
+              )
             }
           >
             <svg width="32" height="32">
@@ -59,7 +64,9 @@ const Filters = () => {
             <p className={style.filterCardText}>Automatic</p>
           </li>
           <li
-            className={style.filterItem}
+            className={clsx(style.filterItem, {
+              [style.active]: filters.kitchen,
+            })}
             onClick={() => handleFilterChange({ kitchen: !filters.kitchen })}
           >
             <svg width="32" height="32">
@@ -68,8 +75,10 @@ const Filters = () => {
             <p className={style.filterCardText}>Kitchen</p>
           </li>
           <li
-            className={style.filterItem}
-            onClick={() => handleFilterChange({ tv: !filters.tv })}
+            className={clsx(style.filterItem, {
+              [style.active]: filters.TV,
+            })}
+            onClick={() => handleFilterChange({ TV: !filters.TV })}
           >
             <svg width="32" height="32">
               <use href={"/icons.svg#tv"}></use>
@@ -77,8 +86,10 @@ const Filters = () => {
             <p className={style.filterCardText}>TV</p>
           </li>
           <li
-            className={style.filterItem}
-            onClick={() => handleFilterChange({ bath: !filters.bath })}
+            className={clsx(style.filterItem, {
+              [style.active]: filters.bathroom,
+            })}
+            onClick={() => handleFilterChange({ bathroom: !filters.bathroom })}
           >
             <svg width="32" height="32">
               <use href={"/icons.svg#shower"}></use>
@@ -99,19 +110,35 @@ const Filters = () => {
           <path d="M0 1H360" stroke="#DADDE1" />
         </svg>
         <ul className={style.filterList}>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={clsx(style.filterItem, {
+              [style.active]: filters.form === "panelTruck",
+            })}
+            onClick={() => handleFilterChange({ form: "panelTruck" })}
+            // selected={ }
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#bi_grid-1x2"}></use>
             </svg>
             <p className={style.filterCardText}>Van</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={clsx(style.filterItem, {
+              [style.active]: filters.form === "fullyIntegrated",
+            })}
+            onClick={() => handleFilterChange({ form: "fullyIntegrated" })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#bi_grid"}></use>
             </svg>
             <p className={style.filterCardText}>Fully Integrated</p>
           </li>
-          <li className={style.filterItem} onClick={handleClick}>
+          <li
+            className={clsx(style.filterItem, {
+              [style.active]: filters.form === "alcove",
+            })}
+            onClick={() => handleFilterChange({ form: "alcove" })}
+          >
             <svg width="32" height="32">
               <use href={"/icons.svg#bi_grid-3x3-gap"}></use>
             </svg>
@@ -119,10 +146,10 @@ const Filters = () => {
           </li>
         </ul>
       </div>
-      <button className={style.filtersButton} onClick={() => "/catalog/:"}>
+      <button className={style.filtersButton} onClick={handleSearch}>
         Search
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -6,7 +6,6 @@ const BookForm = () => {
   const handleSubmit = data => {
     console.log("Form Data:", data);
   };
-  let selectedDate = "";
 
   const nameFieldId = useId();
   const emailFieldId = useId();

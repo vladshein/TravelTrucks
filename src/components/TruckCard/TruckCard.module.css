@@ -53,7 +53,11 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.heartStyle:hover,
+.heartStyle:focus,
+.heartStyle:active {
+  fill: #d84343;
+}
 .firstLineText {
   color: var(--Main, #101828);
 
@@ -91,12 +95,10 @@
   color: var(--Main, #101828);
 
   /* Body underline */
-  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
-  text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-skip-ink: none;
   text-decoration-thickness: auto;
@@ -188,4 +190,24 @@
 .cardButton:hover,
 .cardButton:focus {
   background: #d84343;
+}
+
+.reviewLink {
+  color: var(--Main, #101828);
+  /* Body underline */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.reviewLink:hover,
+.reviewLink:focus {
+  text-decoration-line: underline;
 }

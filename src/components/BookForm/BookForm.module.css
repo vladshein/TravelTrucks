@@ -57,6 +57,11 @@
   border: none;
 }
 
+.formField:hover,
+.formField:focus {
+  outline: none; /* Removes default browser outline */
+}
+
 .formFieldComment {
   display: flex;
   width: 527px;
@@ -67,6 +72,10 @@
   border-radius: 10px;
   background: var(--Inputs, #f7f7f7);
   border: none;
+}
+.formFieldComment:focus,
+.formFieldComment:hover {
+  outline: none;
 }
 
 .formBtn {
