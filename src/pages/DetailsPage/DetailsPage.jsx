@@ -42,6 +42,9 @@ const Details = () => {
               <p>{truck.location}</p>
             </div>
           </div>
+          <div>
+            <h2 className={style.firstLineText}>€{truck.price}.00</h2>
+          </div>
         </div>
         {console.log("truck gallery:", truck.gallery)}
 

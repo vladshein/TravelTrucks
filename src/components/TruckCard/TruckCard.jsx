@@ -63,7 +63,7 @@ const TruckCard = ({
           <div className={css.firstLine}>
             <h2>{name}</h2>
             <div className={css.firstLineEnd}>
-              <h2 className={css.firstLineText}>€{price}</h2>
+              <h2 className={css.firstLineText}>€{price}.00</h2>
               {favoriteList.includes(id) ? (
                 <button type="submit" onClick={() => handleDeleteFavorite(id)}>
                   <svg className={css.heartStyleActive} width="25" height="24">

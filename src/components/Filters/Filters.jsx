@@ -15,8 +15,12 @@ const Filters = () => {
 
   const handleSearch = event => {
     event.preventDefault();
-    console.log("Filters event form", event.target);
-    
+    console.log("Filters event form", event.target.form.elements);
+    const elements = event.target.form.elements;
+    console.log("Elements", elements);
+    const { AC, Automatic } = elements;
+    console.log("AC", AC);
+    console.log("Automatic", Automatic);
   };
 
   return (
@@ -35,7 +39,6 @@ const Filters = () => {
         </svg>
         <ul className={style.filterList}>
           <li
-            name="AC"
             className={clsx(style.filterItem, {
               [style.active]: filters.AC,
             })}
@@ -146,7 +149,11 @@ const Filters = () => {
           </li>
         </ul>
       </div>
-      <button className={style.filtersButton} onClick={handleSearch}>
+      <button
+        className={style.filtersButton}
+        onClick={handleSearch}
+        type="submit"
+      >
         Search
       </button>
     </form>

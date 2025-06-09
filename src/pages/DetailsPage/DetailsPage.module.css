@@ -119,3 +119,14 @@
   display: flex;
   gap: 40px;
 }
+
+.firstLineText {
+  color: var(--Main, #101828);
+
+  /* H2 */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  margin-top: 8px;
+}
