@@ -1,10 +1,15 @@
 import style from "./BookForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const BookForm = () => {
+  const notify = (name, date) =>
+    toast.success(`Dear ${name}, thank you for your booking on ${date}!`);
+
   const handleSubmit = data => {
     console.log("Form Data:", data);
+    notify(data.name, data.bookingDate);
   };
 
   const nameFieldId = useId();
@@ -14,7 +19,9 @@ const BookForm = () => {
 
   const initialValues = {
     name: "",
-    number: "",
+    email: "",
+    date: "",
+    comment: "",
   };
 
   return (
@@ -72,6 +79,7 @@ const BookForm = () => {
           <button className={style.formBtn} type="submit">
             Send
           </button>
+          <Toaster />
         </Form>
       </Formik>
     </div>
