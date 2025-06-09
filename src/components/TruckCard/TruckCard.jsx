@@ -1,7 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./TruckCard.module.css";
 import { useNavigate, Link } from "react-router-dom";
-import { fetchOneOp } from "../../redux/contactsOps";
+import { fetchOneOp } from "../../redux/trucksOps";
+
+import {
+  addFavorite,
+  deleteFavorite,
+  selectFavoriteList,
+} from "../../redux/favoritesSlice";
 
 const TruckCard = ({
   data: {
@@ -27,6 +33,17 @@ const TruckCard = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleAddFavorite = id => {
+    dispatch(addFavorite(id));
+    console.log("id", id);
+  };
+
+  const handleDeleteFavorite = id => {
+    dispatch(deleteFavorite(id));
+    console.log("id", id);
+  };
+
+  const favoriteList = useSelector(selectFavoriteList);
   let descriptionCut = "";
   if (description) {
     descriptionCut = description.slice(0, 61);
@@ -47,9 +64,19 @@ const TruckCard = ({
             <h2>{name}</h2>
             <div className={css.firstLineEnd}>
               <h2 className={css.firstLineText}>€{price}</h2>
-              <svg className={css.heartStyle} width="25" height="24">
-                <use href={"/icons.svg#heart"}></use>
-              </svg>
+              {favoriteList.includes(id) ? (
+                <button type="submit" onClick={() => handleDeleteFavorite(id)}>
+                  <svg className={css.heartStyleActive} width="25" height="24">
+                    <use href={"/icons.svg#heart"}></use>
+                  </svg>
+                </button>
+              ) : (
+                <button type="submit" onClick={() => handleAddFavorite(id)}>
+                  <svg className={css.heartStyle} width="25" height="24">
+                    <use href={"/icons.svg#heart"}></use>
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
           <div className={css.secondLine}>
@@ -109,6 +136,7 @@ const TruckCard = ({
               <p className={css.iconBoxText}>AC</p>
             </div>
           )}
+
           {kitchen && (
             <div className={css.iconBox}>
               <svg width={20} height={20}>

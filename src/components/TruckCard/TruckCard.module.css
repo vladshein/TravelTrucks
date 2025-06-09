@@ -54,10 +54,14 @@
   align-items: center;
 }
 .heartStyle:hover,
-.heartStyle:focus,
-.heartStyle:active {
+.heartStyle:focus {
   fill: #d84343;
 }
+
+.heartStyleActive {
+  fill: #d84343;
+}
+
 .firstLineText {
   color: var(--Main, #101828);
 

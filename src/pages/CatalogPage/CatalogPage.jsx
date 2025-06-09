@@ -6,8 +6,8 @@ import TruckList from "../../components/TruckList/TruckList";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContactsOp } from "../../redux/contactsOps";
-import { selectError, selectLoading } from "../../redux/contactsSlice";
+import { fetchTrucksOp } from "../../redux/trucksOps";
+import { selectError, selectLoading } from "../../redux/trucksSlice";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const CatalogPage = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContactsOp());
+    dispatch(fetchTrucksOp());
   }, [dispatch]);
   return (
     <div className={styles.catalogContainer}>

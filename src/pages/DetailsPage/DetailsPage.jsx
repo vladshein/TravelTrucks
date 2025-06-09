@@ -1,8 +1,8 @@
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import { selectOne } from "../../redux/contactsSlice";
+import { selectOne } from "../../redux/trucksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./DetailsPage.module.css";
-import { fetchOneOp } from "../../redux/contactsOps";
+import { fetchOneOp } from "../../redux/trucksOps";
 import { useEffect } from "react";
 import BookForm from "../../components/BookForm/BookForm";
 
@@ -47,7 +47,7 @@ const Details = () => {
 
         <ul className={style.imageList}>
           {truck.gallery.map((image, index) => (
-            <li className={style.item}>
+            <li className={style.item} key={`image${index}`}>
               <img
                 className={style.truckImage}
                 src={image.original}

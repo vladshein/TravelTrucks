@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectOne } from "../../redux/contactsSlice";
+import { selectOne } from "../../redux/trucksSlice";
 import css from "./Features.module.css";
 
 const Features = () => {

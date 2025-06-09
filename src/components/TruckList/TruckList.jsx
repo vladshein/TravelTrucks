@@ -1,4 +1,4 @@
-import { applyFilters } from "../../redux/contactsSlice";
+import { applyFilters } from "../../redux/trucksSlice";
 import TruckCard from "../TruckCard/TruckCard";
 import css from "./TruckList.module.css";
 import { useSelector } from "react-redux";

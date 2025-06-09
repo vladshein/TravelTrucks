@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectOne } from "../../redux/contactsSlice";
+import { selectOne } from "../../redux/trucksSlice";
 import css from "./Reviews.module.css";
 import Review from "../Review/Review";
 import { useId } from "react";

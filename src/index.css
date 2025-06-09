@@ -24,3 +24,14 @@ img {
   display: block;
   max-width: 100%;
 }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+}
